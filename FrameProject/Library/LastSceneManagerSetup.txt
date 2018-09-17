@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Package/CameraPathCreator/DEMO/CPC_Demo.unity
-  isLoaded: 1
-  isActive: 1
