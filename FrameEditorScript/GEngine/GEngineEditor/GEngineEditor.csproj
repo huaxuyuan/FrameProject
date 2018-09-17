@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{34D7A9A6-8B19-45F9-96A0-6FA34D39C126}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GEngineEditor</RootNamespace>
+    <AssemblyName>GEngineEditor</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNITY_EDITOR</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>Extlib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="GEngineRuntime">
+      <HintPath>Extlib\GEngineRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Extlib\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor">
+      <HintPath>Extlib\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>Extlib\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Users\Administrator\Documents\Visual Studio 2013\Projects\GEngineVS\GEngineEditor\ExtLib\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\FrameEditor\ConditionEditorView\EditorConditionPressView.cs" />
+    <Compile Include="Scripts\FrameEditor\EventEditorView\EditorEventCameraWithGameObjectView.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorBase\EditorFrameConditionViewBase.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorBase\EditorFrameConfigView.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorBase\EditorFrameDetailView.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorBase\EditorFrameEventViewBase.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorBase\EditorGuiContentStyle.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorLogic\EditorFrameConfigLogic.cs" />
+    <Compile Include="Scripts\FrameEditor\FrameEditorLogic\EditorFrameDetailLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\Data\FrameData.cs" />
+    <Compile Include="Scripts\Local\Editor\Data\TableData.cs" />
+    <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataLogic\ImportDataLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataLogic\ImportDataToDbSpace.cs" />
+    <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataLogic\ImportExcelFileLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataLogic\ImportTxtFileLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataToDbEditor.cs" />
+    <Compile Include="Scripts\Local\Editor\Logic\FrameLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\Logic\TableLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\SceneView\SceneViewLogicManager.cs" />
+    <Compile Include="Scripts\Local\Editor\SceneView\SceneViewNode.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\EditorWindowCreateFrame.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\EditorWindowManager.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\Interface\IEditorView.cs" />
+    <Compile Include="Scripts\Local\Editor\CustomEditorGUILayout.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\View\EditorViewCreateFrame.cs" />
+    <Compile Include="Scripts\Local\Editor\Utils\ExcelHelper.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\EditorWindowFrame.cs" />
+    <Compile Include="Scripts\Local\Editor\ToolEntry.cs" />
+    <Compile Include="Scripts\Local\Editor\Utils\RXLookingGlass.cs" />
+    <Compile Include="Scripts\Local\Editor\Utils\Utils.cs" />
+    <Compile Include="Scripts\Local\Editor\Subwindow\View\EditorViewFrame.cs" />
+    <Compile Include="Scripts\ScriptForBuildingBundles\BuildAssetBundleLogic.cs" />
+    <Compile Include="Scripts\ScriptForBuildingBundles\Editor\BundleUtils.cs" />
+    <Compile Include="Scripts\ScriptForBuildingBundles\JsonResourceSerializeHelper.cs" />
+    <Compile Include="Scripts\ScriptForBuildingBundles\ResourceExcelHelper.cs" />
+    <Compile Include="Scripts\ZExpand\Localize\IconContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extlib\" />
+    <Folder Include="Scripts\Local\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "GEngineEditor.dll" "../../../../../FrameProject/Assets/GEngineEditor.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
