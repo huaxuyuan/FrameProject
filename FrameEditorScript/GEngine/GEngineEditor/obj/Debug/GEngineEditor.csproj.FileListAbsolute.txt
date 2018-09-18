@@ -114,3 +114,16 @@ D:\DollHouse\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.csp
 D:\DollHouse\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.csproj.CopyComplete
 D:\DollHouse\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.dll
 D:\DollHouse\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.pdb
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\GEngineEditor.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\GEngineEditor.pdb
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\EPPlus.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\GEngineRuntime.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\Mono.Data.Sqlite.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\UnityEditor.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\UnityEngine.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\bin\Debug\EPPlus.xml
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.csprojAssemblyReference.cache
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.csproj.CoreCompileInputs.cache
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.csproj.CopyComplete
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineEditor\obj\Debug\GEngineEditor.pdb

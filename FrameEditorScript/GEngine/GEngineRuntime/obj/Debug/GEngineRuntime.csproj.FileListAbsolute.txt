@@ -92,3 +92,15 @@ D:\DollHouse\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.c
 D:\DollHouse\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.csproj.CopyComplete
 D:\DollHouse\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.dll
 D:\DollHouse\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.pdb
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\GEngineRuntime.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\GEngineRuntime.pdb
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\EPPlus.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\Mono.Data.Sqlite.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\UnityEngine.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\UnityEngine.UI.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\bin\Debug\UnityEditor.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.csprojAssemblyReference.cache
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.csproj.CoreCompileInputs.cache
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.csproj.CopyComplete
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.dll
+D:\gitSvn\FrameEditorScript\GEngine\GEngineRuntime\obj\Debug\GEngineRuntime.pdb
