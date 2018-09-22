@@ -13,6 +13,8 @@ namespace FrameEditor
         private VoFrameTotalDetailData _frameTotalDetailData;
         private List<VoFrameDetailData> _addDetailData;
         private List<VoFrameDetailData> _delDetailData;
+        private List<VoPathData> _addPathData;
+        private List<VoPathData> _delPathData;
         private VoFrameConfigData _frameConfigData;
         private EditorGuiContentStyle _editorGUIContentStyle;
         private EditorFrameDetailView _editorFrameDetailView;
@@ -20,11 +22,15 @@ namespace FrameEditor
         {
             _addDetailData = new List<VoFrameDetailData>();
             _delDetailData = new List<VoFrameDetailData>();
+            _addPathData = new List<VoPathData>();
+            _delPathData = new List<VoPathData>();
         }
         public void OnEnter(VoFrameConfigData frameConfigData,EditorFrameDetailView detailView)
         {
             _addDetailData.Clear();
             _delDetailData.Clear();
+            _addPathData.Clear();
+            _delPathData.Clear();
             _editorFrameDetailView = detailView;
             _frameTotalDetailData = VoConfigDataManager.Instance.currentFrameTotalDetailData;
             _frameConfigData = frameConfigData;
@@ -51,6 +57,22 @@ namespace FrameEditor
                     _frameTotalDetailData.f.Remove(detailData);
                 }
                 _delDetailData.Clear();
+            }
+            if(_addPathData.Count > 0)
+            {
+                foreach(VoPathData pathData in _addPathData)
+                {
+                    _frameTotalDetailData.AddPathData(pathData);
+                }
+                _addPathData.Clear();
+            }
+            if(_delPathData.Count >0)
+            {
+                foreach(VoPathData pathData in _delPathData)
+                {
+                    _frameTotalDetailData.RemovePathData(pathData);
+                }
+                _delPathData.Clear();
             }
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             GUILayout.Label("关卡名称："+_frameConfigData.name,EditorGuiContentStyle.Instance.littleLabelStyle , GUILayout.Width(200), GUILayout.Height(20));
@@ -95,7 +117,25 @@ namespace FrameEditor
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.EndVertical();
             GUILayout.Space(10);
-
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            GUILayout.Label("关卡路径信息：", EditorGuiContentStyle.Instance.littleLabelStyle, GUILayout.Width(200), GUILayout.Height(20));
+            GUILayout.Space(10);
+            foreach(VoPathData pathData in _frameTotalDetailData.pathList)
+            {
+                EditorGUILayout.BeginHorizontal();
+                pathData.PathName = EditorGUILayout.TextField(pathData.PathName);
+                if (GUILayout.Button("删除路径", GUILayout.Width(_editorGUIContentStyle.defaultBtnWidth), GUILayout.Height(_editorGUIContentStyle._menuBtnHeight)))
+                {
+                    RemoveFramePathData(pathData);
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            if (GUILayout.Button("添加路径", GUILayout.Width(_editorGUIContentStyle.defaultBtnWidth), GUILayout.Height(_editorGUIContentStyle._menuBtnHeight)))
+            {
+                AddFramePathData();
+                //create 
+            }
+                EditorGUILayout.EndVertical();
             EditorGUILayout.BeginHorizontal();
               GUILayout.Space(_editorGUIContentStyle.defaultMiddleSpace);
             if (GUILayout.Button("新建内容", GUILayout.Width(_editorGUIContentStyle.defaultBtnWidth), GUILayout.Height(_editorGUIContentStyle._menuBtnHeight)))
@@ -112,6 +152,16 @@ namespace FrameEditor
         {
             VoFrameDetailData detailData = obj as VoFrameDetailData;
             _addDetailData.Add(detailData);
+        }
+        private void AddFramePathData()
+        {
+            VoPathData pathData = _frameTotalDetailData.CreatePathData();
+            _addPathData.Add(pathData);
+
+        }
+        private void RemoveFramePathData(VoPathData pathData)
+        {
+            _delPathData.Add(pathData);
         }
         public void OnExit()
         {

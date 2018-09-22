@@ -79,11 +79,15 @@ namespace ConfigData
         public int maxID;
         public List<int> f;
         public List<FrameDetailData> d;
+        public List<FramePathData> p;
+        public int maxPathID;
+
         public FrameTotalDetailData()
         {
             maxID = 0;
             d = new List<FrameDetailData>();
             f = new List<int>();
+            p = new List<FramePathData>();
         }
         public FrameDetailData CreateFrameDetailData()
         {
@@ -126,10 +130,34 @@ namespace ConfigData
                 f.Remove(detailData.ID);
             }
         }
+
         public void ClearFrameDetailData()
         {
             f.Clear();
             d.Clear();
+            p.Clear();
+        }
+        public FramePathData CreateFramePathData()
+        {
+            FramePathData pathData = new FramePathData();
+            pathData.pathID = (maxPathID++);
+            p.Add(pathData);
+            return pathData;
+        }
+        public void RemoveFramePathData(FramePathData pathData)
+        {
+            if (!p.Contains(pathData))
+                return;
+            if (pathData.pathID == maxPathID)
+                maxPathID--;
+            p.Remove(pathData);
+        }
+        public void AddFramePathData(FramePathData pathData)
+        {
+            if(!p.Contains(pathData))
+            {
+                p.Add(pathData);
+            }
         }
     }
     public class FrameDetailData
@@ -203,6 +231,49 @@ namespace ConfigData
             if (n.Contains(detailData.ID))
                 n.Remove(detailData.ID);
         }
+
+    }
+    public class FramePathData
+    {
+        public string pathName;
+        public int pathID;
+        public string targetObjPath;
+        public bool lookTarget;
+        public List<FramePathNode> framePathNodeList;
+        public FramePathData()
+        {
+            framePathNodeList = new List<FramePathNode>();
+        }
+        public FramePathNode CreatPathNode()
+        {
+            FramePathNode pathNode = new FramePathNode();
+            framePathNodeList.Add(pathNode);
+            return pathNode;
+        }
+        public void ClearPathNode()
+        {
+            framePathNodeList.Clear();
+        }
+
+    }
+    public class FramePathNode
+    {
+        public JsonVector3Float position;
+        public JsonVector3Float rotation;
+        public JsonVector3Float prePosition;
+        public JsonVector3Float preRotation;
+        public int positionCurveType;
+        public int rotationCurveType;
+        public bool chained;
+        public FramePathNode()
+        {
+            position = new JsonVector3Float();
+            rotation = new JsonVector3Float();
+            prePosition = new JsonVector3Float();
+            preRotation = new JsonVector3Float();
+        }
+
+        
     }
     public class FrameConditionData
     {
@@ -406,6 +477,19 @@ namespace ConfigData
                 return null;
             FrameConditionData c = currentDetailData.CreateConditionData(conditionType);
             return c;
+        }
+        public FramePathData CreateFramePathData()
+        {
+            if (currentFrameDetailData == null)
+                return null;
+            FramePathData p = currentFrameDetailData.CreateFramePathData();
+            return p;
+        }
+        public void RemovePathData(FramePathData pathData)
+        {
+            if (currentFrameDetailData == null)
+                return;
+            currentFrameDetailData.RemoveFramePathData(pathData);
         }
         public void Exit()
         {

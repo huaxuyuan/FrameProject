@@ -34,11 +34,14 @@ namespace FrameLogicData
     {
         public List<VoFrameDetailData> f = new List<VoFrameDetailData>();
         public List<VoFrameDetailData> d = new List<VoFrameDetailData>();
+        public List<VoPathData> pathList;
+
         public Dictionary<int, VoFrameDetailData> detailDic = new Dictionary<int, VoFrameDetailData>();
         public FrameTotalDetailData frameTotalDetail;
         public VoFrameDetailData currentDetailData;
         public VoFrameTotalDetailData(FrameTotalDetailData frameTotalData)
         {
+            pathList = new List<VoPathData>();
             frameTotalDetail = frameTotalData;
             VoFrameDetailData detailData;
             foreach(FrameDetailData frameDetailData in frameTotalData.d)
@@ -50,6 +53,11 @@ namespace FrameLogicData
             foreach(int fID in frameTotalData.f)
             {
                 f.Add(detailDic[fID]);
+            }
+            foreach (FramePathData pathData in frameTotalData.p)
+            {
+                VoPathData voPathData = new VoPathData(pathData);
+                pathList.Add(voPathData);
             }
         }
         public VoFrameDetailData CreateVoFrameDetailData()
@@ -97,6 +105,10 @@ namespace FrameLogicData
             {
                 frameTotalDetail.AddFrameLauchDetailData(detailData.frameDetailData);
             }
+            foreach(VoPathData pathData in pathList)
+            {
+                frameTotalDetail.AddFramePathData(pathData.framePathData);
+            }
         }
         public bool CheckFrameDetailNameSame(string name)
         {
@@ -106,6 +118,22 @@ namespace FrameLogicData
                     return true;
             }
             return false;
+        }
+        public VoPathData CreatePathData()
+        {
+            VoPathData pathData = new VoPathData(ConfigDataManager.Instance.CreateFramePathData());
+            return pathData;
+        }
+        public void AddPathData(VoPathData pathData)
+        {
+            pathList.Add(pathData);
+        }
+        public void RemovePathData(VoPathData pathData)
+        {
+            if (!pathList.Contains(pathData))
+                return;
+            ConfigDataManager.Instance.RemovePathData(pathData.framePathData);
+            pathList.Remove(pathData);
         }
 
     }
@@ -141,12 +169,13 @@ namespace FrameLogicData
             eventList = new List<VoFrameEventData>();
             nextFrameDetailData = new List<VoFrameDetailData>();
             eventList = new List<VoFrameEventData>();
-            foreach(FrameEventData eventData in frameDetailData.e)
+            foreach (FrameEventData eventData in frameDetailData.e)
             {
                 VoFrameEventData voFrameEventData = new VoFrameEventData(eventData);
                 voFrameEventData.baseNameString = DetailName;
                 eventList.Add(voFrameEventData);
             }
+
             if(frameDetailData.c != null)
             {
                 condition = new VoFrameConditionData(frameDetailData.c);
@@ -206,6 +235,7 @@ namespace FrameLogicData
             if (condition != null)
                 condition.SaveConditionData();
         }
+
 
     }
 
@@ -290,7 +320,85 @@ namespace FrameLogicData
             frameEventData.eventParam = GetEventParamStr();
         }
     }
+    public class VoPathData
+    {
+        public int pathID
+        {
+            get
+            { return framePathData.pathID; }
+        }
+        public string PathName
+        {
+            get
+            { return framePathData.pathName; }
+            set
+            { framePathData.pathName = value; }
+        }
+        public string PathTarget
+        {
+            get
+            { return framePathData.targetObjPath; }
+            set
+            { framePathData.targetObjPath = value; }
+        }
+        public bool LookTarget
+        {
+            get
+            { return framePathData.lookTarget; }
+            set
+            { framePathData.lookTarget = value; }
+        }
+        public FramePathData framePathData;
+        public List<VoPathNode> pathNodeList;
+        public VoPathData(FramePathData pathData)
+        {
+            pathNodeList = new List<VoPathNode>();
+            framePathData = pathData;
+        }
+        public void ClearPathVariable()
+        {
+            pathNodeList.Clear();
+            framePathData.ClearPathNode();
+        }
+        public VoPathNode CreatePathNode()
+        {
+            VoPathNode pathNode = new VoPathNode(framePathData.CreatPathNode());
+            pathNodeList.Add(pathNode);
+            return pathNode;
+        }
+        public void SavePathNode()
+        {
+            foreach (VoPathNode pathNode in pathNodeList)
+                pathNode.SavePathNode();
+        }
+    }
+    public class VoPathNode
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public Vector3 handleprev;
+        public Vector3 handlenext;
+        public int curveTypeRotation;
+        public int curveTypePosition;
+        public bool chained;
 
+        private FramePathNode _pathNode;
+        public VoPathNode( FramePathNode pathNode)
+        {
+            _pathNode = pathNode;
+        }
+        public void SavePathNode()
+        {
+            _pathNode.chained = chained;
+            _pathNode.position = new JsonVector3Float(position);
+            _pathNode.positionCurveType = curveTypePosition;
+            _pathNode.rotationCurveType = curveTypeRotation;
+            _pathNode.rotation = new JsonVector3Float(rotation);
+            _pathNode.prePosition = new JsonVector3Float(handleprev);
+            _pathNode.preRotation = new JsonVector3Float(handlenext);
+
+        }
+    }
     public class VoConfigDataManager :SingletonNotMono<VoConfigDataManager>
     {
         public VoFrameConfigData currentFrameConfigData;

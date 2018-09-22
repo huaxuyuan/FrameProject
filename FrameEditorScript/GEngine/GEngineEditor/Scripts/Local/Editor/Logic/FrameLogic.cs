@@ -93,9 +93,23 @@ namespace GEngine.Editor
         }
         public void SaveFrame()
         {
+            SavePathLogic();
             VoConfigDataManager.Instance.SaveFrameConfigData();
             EditorWindowManager.Instance.HideWindow(EditorWindowManager.WINDOW_TYPE_EDITWINDOW);
             EditorWindowManager.Instance.HideWindow(EditorWindowManager.WINDOW_TYPE_CREATE_FRAME);
+        }
+        private void SavePathLogic()
+        {
+            List<VoPathData> pathList = VoConfigDataManager.Instance.currentFrameTotalDetailData.pathList;
+            foreach(VoPathData pathData in pathList)
+            {
+                pathData.ClearPathVariable();
+                //get path component 
+                //get component variable pathData.CreatePathNode(); initialize path node variable
+
+                //pathData.CreatePathNode();
+                pathData.SavePathNode();
+            }
         }
         public void ExitFrame()
         {

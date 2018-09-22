@@ -94,6 +94,7 @@
     <Compile Include="Scripts\Local\Editor\Utils\RXLookingGlass.cs" />
     <Compile Include="Scripts\Local\Editor\Utils\Utils.cs" />
     <Compile Include="Scripts\Local\Editor\Subwindow\View\EditorViewFrame.cs" />
+    <Compile Include="Scripts\Mono\CPC_CameraPath.cs" />
     <Compile Include="Scripts\ScriptForBuildingBundles\BuildAssetBundleLogic.cs" />
     <Compile Include="Scripts\ScriptForBuildingBundles\Editor\BundleUtils.cs" />
     <Compile Include="Scripts\ScriptForBuildingBundles\JsonResourceSerializeHelper.cs" />
