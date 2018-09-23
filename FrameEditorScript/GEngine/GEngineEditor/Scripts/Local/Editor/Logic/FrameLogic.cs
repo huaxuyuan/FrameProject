@@ -93,7 +93,7 @@ namespace GEngine.Editor
         }
         public void SaveFrame()
         {
-            SavePathLogic();
+            PathLogic.Instance.SavePathLogic();
             VoConfigDataManager.Instance.SaveFrameConfigData();
             EditorWindowManager.Instance.HideWindow(EditorWindowManager.WINDOW_TYPE_EDITWINDOW);
             EditorWindowManager.Instance.HideWindow(EditorWindowManager.WINDOW_TYPE_CREATE_FRAME);

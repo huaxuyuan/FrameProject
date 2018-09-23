@@ -242,6 +242,7 @@ namespace ConfigData
         public List<FramePathNode> framePathNodeList;
         public FramePathData()
         {
+            pathName = "";
             framePathNodeList = new List<FramePathNode>();
         }
         public FramePathNode CreatPathNode()
@@ -258,19 +259,19 @@ namespace ConfigData
     }
     public class FramePathNode
     {
-        public JsonVector3Float position;
-        public JsonVector3Float rotation;
-        public JsonVector3Float prePosition;
-        public JsonVector3Float preRotation;
+        public JsonVector3FInt position;
+        public JsonVector3FInt rotation;
+        public JsonVector3FInt prePosition;
+        public JsonVector3FInt preRotation;
         public int positionCurveType;
         public int rotationCurveType;
         public bool chained;
         public FramePathNode()
         {
-            position = new JsonVector3Float();
-            rotation = new JsonVector3Float();
-            prePosition = new JsonVector3Float();
-            preRotation = new JsonVector3Float();
+            position = new JsonVector3FInt();
+            rotation = new JsonVector3FInt();
+            prePosition = new JsonVector3FInt();
+            preRotation = new JsonVector3FInt();
         }
 
         

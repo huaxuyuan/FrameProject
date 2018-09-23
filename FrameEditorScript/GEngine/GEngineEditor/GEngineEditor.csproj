@@ -80,6 +80,7 @@
     <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataLogic\ImportTxtFileLogic.cs" />
     <Compile Include="Scripts\Local\Editor\DBImporter\ImportDataEditor\ImportDataToDbEditor.cs" />
     <Compile Include="Scripts\Local\Editor\Logic\FrameLogic.cs" />
+    <Compile Include="Scripts\Local\Editor\Logic\PathLogic.cs" />
     <Compile Include="Scripts\Local\Editor\Logic\TableLogic.cs" />
     <Compile Include="Scripts\Local\Editor\SceneView\SceneViewLogicManager.cs" />
     <Compile Include="Scripts\Local\Editor\SceneView\SceneViewNode.cs" />

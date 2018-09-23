@@ -18,6 +18,8 @@ namespace FrameEditor
         private VoFrameConfigData _frameConfigData;
         private EditorGuiContentStyle _editorGUIContentStyle;
         private EditorFrameDetailView _editorFrameDetailView;
+        private GameObject _pathObjParent;
+        private string _tempString;
         public EditorFrameConfigView()
         {
             _addDetailData = new List<VoFrameDetailData>();
@@ -32,9 +34,11 @@ namespace FrameEditor
             _addPathData.Clear();
             _delPathData.Clear();
             _editorFrameDetailView = detailView;
+            PathLogic.Instance.InitializePathLogic();
             _frameTotalDetailData = VoConfigDataManager.Instance.currentFrameTotalDetailData;
             _frameConfigData = frameConfigData;
             _editorGUIContentStyle = EditorGuiContentStyle.Instance;
+            _pathObjParent = _pathObjParent = GameObject.Find("logic/path_array");
         }
         public void UIDraw()
         {
@@ -62,7 +66,8 @@ namespace FrameEditor
             {
                 foreach(VoPathData pathData in _addPathData)
                 {
-                    _frameTotalDetailData.AddPathData(pathData);
+                    PathLogic.Instance.CreatePathLogic(pathData);
+                    
                 }
                 _addPathData.Clear();
             }
@@ -70,7 +75,8 @@ namespace FrameEditor
             {
                 foreach(VoPathData pathData in _delPathData)
                 {
-                    _frameTotalDetailData.RemovePathData(pathData);
+                    PathLogic.Instance.RemovePathLogic(pathData);
+                   
                 }
                 _delPathData.Clear();
             }
@@ -123,10 +129,22 @@ namespace FrameEditor
             foreach(VoPathData pathData in _frameTotalDetailData.pathList)
             {
                 EditorGUILayout.BeginHorizontal();
-                pathData.PathName = EditorGUILayout.TextField(pathData.PathName);
+                _tempString = EditorGUILayout.TextField(pathData.PathName);
+                if(_tempString != pathData.PathName)
+                {
+                   
+                    Transform pathTrans = _pathObjParent.transform.Find(pathData.PathNodeName);
+                    pathData.PathName = _tempString;
+                    pathTrans.gameObject.name = pathData.PathNodeName;
+
+                }
                 if (GUILayout.Button("删除路径", GUILayout.Width(_editorGUIContentStyle.defaultBtnWidth), GUILayout.Height(_editorGUIContentStyle._menuBtnHeight)))
                 {
                     RemoveFramePathData(pathData);
+                }
+                if (GUILayout.Button("选择路径", GUILayout.Width(_editorGUIContentStyle.defaultBtnWidth), GUILayout.Height(_editorGUIContentStyle._menuBtnHeight)))
+                {
+                    Selection.activeGameObject = _pathObjParent.transform.Find(pathData.PathNodeName).gameObject;
                 }
                 EditorGUILayout.EndHorizontal();
             }
@@ -156,11 +174,13 @@ namespace FrameEditor
         private void AddFramePathData()
         {
             VoPathData pathData = _frameTotalDetailData.CreatePathData();
+
             _addPathData.Add(pathData);
 
         }
         private void RemoveFramePathData(VoPathData pathData)
         {
+
             _delPathData.Add(pathData);
         }
         public void OnExit()

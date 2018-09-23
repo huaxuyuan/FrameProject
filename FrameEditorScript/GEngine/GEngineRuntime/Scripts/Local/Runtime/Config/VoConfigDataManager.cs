@@ -334,6 +334,11 @@ namespace FrameLogicData
             set
             { framePathData.pathName = value; }
         }
+        public string PathNodeName
+        {
+            get
+            { return framePathData.pathName + "_" + pathID; }
+        }
         public string PathTarget
         {
             get
@@ -383,6 +388,8 @@ namespace FrameLogicData
         public bool chained;
 
         private FramePathNode _pathNode;
+
+        
         public VoPathNode( FramePathNode pathNode)
         {
             _pathNode = pathNode;
@@ -390,12 +397,12 @@ namespace FrameLogicData
         public void SavePathNode()
         {
             _pathNode.chained = chained;
-            _pathNode.position = new JsonVector3Float(position);
+            _pathNode.position = new JsonVector3FInt(position);
             _pathNode.positionCurveType = curveTypePosition;
             _pathNode.rotationCurveType = curveTypeRotation;
-            _pathNode.rotation = new JsonVector3Float(rotation);
-            _pathNode.prePosition = new JsonVector3Float(handleprev);
-            _pathNode.preRotation = new JsonVector3Float(handlenext);
+            _pathNode.rotation = new JsonVector3FInt(rotation);
+            _pathNode.prePosition = new JsonVector3FInt(handleprev);
+            _pathNode.preRotation = new JsonVector3FInt(handlenext);
 
         }
     }

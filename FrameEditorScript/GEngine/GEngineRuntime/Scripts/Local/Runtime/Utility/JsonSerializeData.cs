@@ -44,48 +44,50 @@ public class JsonVector3Int
         d[2] = z;
     }
 }
-public class JsonVector3Float
+public class JsonVector3FInt
 {
-    public float[] d;
-    public JsonVector3Float()
+    public int[] d;
+    public JsonVector3FInt()
     {
-        d = new float[3];
+        d = new int[3];
     }
-    public JsonVector3Float(float x, float y, float z)
+    public JsonVector3FInt(float x, float y, float z)
     {
-        d = new float[3];
-        d[0] = x;
-        d[1] = y;
-        d[2] = z;
+        d = new int[3];
+        d[0] = (int)(x *1000);
+        d[1] = (int)(y*1000);
+        d[2] = (int)(z*1000);
     }
-    public JsonVector3Float(UnityEngine.Vector3 enginEVector3)
+    public JsonVector3FInt(UnityEngine.Vector3 enginEVector3)
     {
-        d = new float[3];
-        d[0] = enginEVector3.x;
-        d[1] = enginEVector3.y;
-        d[2] = enginEVector3.z;
+        d = new int[3];
+        d[0] = (int)(enginEVector3.x *1000);
+        d[1] = (int)(enginEVector3.y * 1000);
+        d[2] = (int)(enginEVector3.z *1000);
     }
     public UnityEngine.Vector3 ToEngineVector3()
     {
         UnityEngine.Vector3 result = new UnityEngine.Vector3();
-        result.x = d[0];
-        result.y = d[1];
-        result.z = d[2];
+        result.x = (float)((float)d[0] / 1000.0f);
+        result.y = (float)((float)d[1] / 1000.0f);
+        result.z = (float)((float)d[2] / 1000.0f);
 
         return result;
     }
-    public JsonVector3Float(UnityEngine.Quaternion qua)
+    public JsonVector3FInt(UnityEngine.Quaternion qua)
     {
-        d = new float[3];
-        UnityEngine.Vector3 vector3 = qua.eulerAngles;
-        d[0] = vector3.x;
-        d[1] = vector3.y;
-        d[2] = vector3.z;
+        d = new int[3];
+        UnityEngine.Vector3 enginEVector3 = qua.eulerAngles;
+        d[0] = (int)(enginEVector3.x * 1000);
+        d[1] = (int)(enginEVector3.y * 1000);
+        d[2] = (int)(enginEVector3.z * 1000);
     }
     public UnityEngine.Quaternion ToEngineQuaternion()
     {
         UnityEngine.Quaternion rotation = new UnityEngine.Quaternion();
-        rotation = UnityEngine.Quaternion.Euler(d[0], d[1], d[2]);
+        rotation = UnityEngine.Quaternion.Euler((float)((float)d[0]/1000.0f), 
+                                                (float)((float)d[1]/1000.0f), 
+                                            (float)((float)d[2]/1000.0f));
         return rotation;
     }
 }
