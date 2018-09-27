@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 
 namespace FrameEditorLogic
 {
     public class EditorFrameConfigLogic : SingletonNotMono<EditorFrameConfigLogic>
     {
+        public void InitializeFrameLogic()
+        {
+            GEngine.Editor.EditorViewFrame.Instance.InitializeFrameLogic();
+        }
     }
 }

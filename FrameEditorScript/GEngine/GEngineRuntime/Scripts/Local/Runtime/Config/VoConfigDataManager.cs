@@ -23,7 +23,13 @@ namespace FrameLogicData
             set
             { frameConfigData.describe = value; }
         }
-       
+        public string SceneName
+        {
+            get
+            { return frameConfigData.sceneName; }
+            set
+            { frameConfigData.sceneName = value; }
+        }
         public FrameConfigData frameConfigData;
         public VoFrameConfigData(FrameConfigData configData)
         {

@@ -11,9 +11,13 @@ namespace FrameEditor
     public class EditorGuiContentStyle : SingletonNotMono<EditorGuiContentStyle>
     {
         public GUIContent fieldGUIContent;
+        public GUIContent litleTitleGUIContent;
+        public GUIContent itemGUIContent;
         public void RegisterContent()
         {
             fieldGUIContent = new GUIContent(EditorGUIUtility.FindTexture(IconConstContainer.ICON_DEFAULT_ASSET));
+            litleTitleGUIContent = new GUIContent(EditorGUIUtility.FindTexture(IconConstContainer.ICON_TOOL_TITLE));
+            itemGUIContent = new GUIContent(EditorGUIUtility.FindTexture(IconConstContainer.ICON_ITEM_STAR));//ICON_ITEM_STAR
         }
         public GUIStyle fieldGUIStyle;
         public GUIStyle menuBtnStyle;

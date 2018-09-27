@@ -35,12 +35,14 @@ namespace GEngine.Editor
         }
         public void DeleteFrame()
         {
+            SceneLogic.Instance.RemoveScene();
             VoConfigDataManager.Instance.RemoveCurrentConfigData();
             //ConfigDataManager.Instance.RemoveConfigData();
         }
         public void AddFrameConfig(VoFrameConfigData configData)
         {
             VoConfigDataManager.Instance.AddFrameConfigData(configData);
+            EditorFrameConfigLogic.Instance.InitializeFrameLogic();
             EditorWindowManager.Instance.HideWindow(EditorWindowManager.WINDOW_TYPE_CREATE_FRAME);
         }
         public void SelectFrameConfig(FrameConfigData configData)
@@ -52,6 +54,7 @@ namespace GEngine.Editor
             }
             Debug.Log("select frame config name == " + configData.name);
             VoConfigDataManager.Instance.SelectFrameConfigData(configData);
+            SceneLogic.Instance.OpenScene(configData);
         }
         public bool CheckCurrentFrameConfig(FrameConfigData configData)
         {

@@ -68,10 +68,15 @@ namespace ConfigData
         public int tID;//frame id used to logic default ID == tID
         public string name;// frame name
         public string describe;
+        public string sceneName;
 
         public FrameConfigData()
         {
             name = "empty";
+        }
+        public string GetConfigSceneName()
+        {
+            return name + "_" + sceneName;
         }
     }
     public class FrameTotalDetailData

@@ -13,6 +13,8 @@ namespace GEngine.Editor
         private GUIContent _fieldGUIContent;
         private GUIStyle _fieldGUIStyle;
         private bool _nameSame;
+        private EditorGuiContentStyle _editorGUIContentStyle;
+        private bool _selectScene;
         public void GenerateGUIContent()
         {
 #if UNITY_EDITOR
@@ -42,6 +44,7 @@ namespace GEngine.Editor
             if (_frameConfigData == null)
                 return;
             GUILayout.BeginVertical(EditorStyles.helpBox);
+            #region FrameName
             _fieldGUIContent.text = "关卡名称：";
             _tempFrameName = EditorGUILayout.TextField(_fieldGUIContent, _frameConfigData.name,EditorGuiContentStyle.Instance.fieldGUIStyle);
             if (_tempFrameName != _frameConfigData.name)
@@ -60,19 +63,57 @@ namespace GEngine.Editor
                 EditorWindowManager.Instance.HelpBox("名字重复");
             if (GUILayout.Button("confirm ", GUILayout.Width(100), GUILayout.Height(20)))
             {
-                if ((_tempFrameName == null) || _tempFrameName == ""||VoConfigDataManager.Instance.CheckConfigHasSameName(_tempFrameName))
+                if (CheckFrameNameEqual())
                 {
                     EditorWindowManager.Instance.ShowMsgBox("无法添加");
                 }
                 else
                     FrameLogic.Instance.AddFrameConfig(_frameConfigData);
             }
+
+            #endregion
+            #region FrameScene
+            _selectScene = EditorGUILayout.Foldout(_selectScene, _editorGUIContentStyle.litleTitleGUIContent, _editorGUIContentStyle.foldOutStyle);
+            if(_selectScene)
+            {
+                foreach(SceneAsset sceneAsset in SceneLogic.Instance.sceneAssetList)
+                {
+                    _editorGUIContentStyle.itemGUIContent.text = sceneAsset.name;
+                    if (GUILayout.Button(_editorGUIContentStyle.itemGUIContent, _editorGUIContentStyle.menuBtnStyle))
+                    {
+
+                        if (CheckFrameNameEqual())
+                        {
+                            EditorWindowManager.Instance.ShowMsgBox("无法添加");
+                        }
+                        else
+                        {
+                            SceneLogic.Instance.curSceneAsset = sceneAsset;
+                            _frameConfigData.SceneName = sceneAsset.name;
+                            SceneLogic.Instance.SaveSceneFile(_frameConfigData.frameConfigData.GetConfigSceneName());
+                            
+                            FrameLogic.Instance.AddFrameConfig(_frameConfigData);
+                        }
+                        
+                    }
+
+                }
+            }
+            #endregion
             GUILayout.EndVertical();
         }
 
+        private bool CheckFrameNameEqual()
+        {
+            if ((_tempFrameName == null) || _tempFrameName == "" || VoConfigDataManager.Instance.CheckConfigHasSameName(_tempFrameName))
+                return true;
+            return false;
+        }
         public void Enter()
         {
             _nameSame = false;
+            SceneLogic.Instance.RefreshSceneAsset();
+            _editorGUIContentStyle = EditorGuiContentStyle.Instance;
         }
 
         public void Exit()

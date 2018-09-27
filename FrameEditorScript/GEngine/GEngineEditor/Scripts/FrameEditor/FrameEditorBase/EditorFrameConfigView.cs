@@ -44,6 +44,7 @@ namespace FrameEditor
         {
             if (_frameTotalDetailData == null)
             {
+
                 return;
             }
             if(_addDetailData.Count > 0)

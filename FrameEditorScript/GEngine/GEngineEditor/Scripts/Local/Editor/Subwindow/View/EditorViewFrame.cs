@@ -13,6 +13,8 @@ namespace GEngine.Editor
         EditorFrameDetailView _editorFrameDetailView;
         EditorFrameConfigView _editorFrameConfigView;
         EditorGuiContentStyle _editorGUIContentStyle;
+
+        
         public void Enter()
         {
             //Debug.Log("EditorViewFrame open");
@@ -90,6 +92,11 @@ namespace GEngine.Editor
 
 
         private Vector2 _leftPartScrollView;
+        public void InitializeFrameLogic()
+        {
+            _editorFrameConfigView.OnEnter(VoConfigDataManager.Instance.currentFrameConfigData, _editorFrameDetailView);
+
+        }
         public void DrawUI(object param)
         {
             if (_frameLogic == null)
